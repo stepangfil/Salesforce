@@ -21,7 +21,7 @@ public with sharing class Game {
        	    calculationBalanceHP(fighterTwo, fighterOne);
             showBattleResult(fighterOne, fighterTwo);
         }
-	}
+    }
     
     /**
      * Method implements calculating and refresh balance units HP
