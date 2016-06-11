@@ -28,7 +28,7 @@ public with sharing class Unit {
         Integer damageMax = unitDamageMax;
 		
         Integer damage = (Integer)(Math.floor(Math.random() * (damageMax - damageMin + 1) + damageMin));
-		return damage;	
+	return damage;	
 	}
     
     public void setUnitName(String unitName) {
