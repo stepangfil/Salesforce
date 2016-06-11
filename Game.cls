@@ -17,8 +17,8 @@ public with sharing class Game {
     public void fighting(Unit fighterOne, Unit fighterTwo) {
        
     	while(fighterOne.getUnitHP() > 0 && fighterTwo.getUnitHP() > 0) {
-        	calculationBalanceHP(fighterOne, fighterTwo);
-       		calculationBalanceHP(fighterTwo, fighterOne);
+            calculationBalanceHP(fighterOne, fighterTwo);
+       	    calculationBalanceHP(fighterTwo, fighterOne);
             showBattleResult(fighterOne, fighterTwo);
         }
 	}
@@ -43,11 +43,11 @@ public with sharing class Game {
     public void showBattleResult(Unit fighterOne, Unit fighterTwo) {
         
         if(fighterOne.getUnitHP() > 0 && fighterTwo.getUnitHP() > 0) {
-           	System.debug(fighterOne.getUnitName() + ' > ' + fighterOne.getUnitHP() + '  -  ' + fighterTwo.getUnitHP() + ' < ' + fighterTwo.getUnitName());
+            System.debug(fighterOne.getUnitName() + ' > ' + fighterOne.getUnitHP() + '  -  ' + fighterTwo.getUnitHP() + ' < ' + fighterTwo.getUnitName());
         } else if (fighterOne.getUnitHP() > 0){
-        	System.debug(fighterOne.getUnitName() + ' [WIN]' + '  -  ' + '[DIE] ' + fighterTwo.getUnitName());
+            System.debug(fighterOne.getUnitName() + ' [WIN]' + '  -  ' + '[DIE] ' + fighterTwo.getUnitName());
         } else {
-        	System.debug(fighterTwo.getUnitName() + ' [DIE]' + '  -  ' + '[WIN] ' + fighterTwo.getUnitName());
+            System.debug(fighterTwo.getUnitName() + ' [DIE]' + '  -  ' + '[WIN] ' + fighterTwo.getUnitName());
         }
     }
     
