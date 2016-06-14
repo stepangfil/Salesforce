@@ -14,14 +14,16 @@ public with sharing class Game {
     /**
      * Method implements fighting logic app.
     **/
-    public void fighting(Unit fighterOne, Unit fighterTwo) {
-       
-    	while(fighterOne.getUnitHP() > 0 && fighterTwo.getUnitHP() > 0) {
-            calculationBalanceHP(fighterOne, fighterTwo);
-       	    calculationBalanceHP(fighterTwo, fighterOne);
-            showBattleResult(fighterOne, fighterTwo);
+    public String fighting(Unit fighterOne, Unit fighterTwo) {
+		String buttleResult;       
+    	
+        while(fighterOne.getUnitHP() > 0 && fighterTwo.getUnitHP() > 0) {
+        	calculationBalanceHP(fighterOne, fighterTwo);
+       		calculationBalanceHP(fighterTwo, fighterOne);
         }
-    }
+        return buttleResult = showBattleResult( fighterOne, fighterTwo);
+      	
+	}
     
     /**
      * Method implements calculating and refresh balance units HP
@@ -37,18 +39,18 @@ public with sharing class Game {
     }
 	
 	/**
-	 * Method implements printing balance HP and print result of the battle
+	 * Method implements forms string with result of the battle
 	 * 
 	**/
-    public void showBattleResult(Unit fighterOne, Unit fighterTwo) {
+    public String showBattleResult(Unit fighterOne, Unit fighterTwo) {
+        String resultButtle;
         
-        if(fighterOne.getUnitHP() > 0 && fighterTwo.getUnitHP() > 0) {
-            System.debug(fighterOne.getUnitName() + ' > ' + fighterOne.getUnitHP() + '  -  ' + fighterTwo.getUnitHP() + ' < ' + fighterTwo.getUnitName());
-        } else if (fighterOne.getUnitHP() > 0){
-            System.debug(fighterOne.getUnitName() + ' [WIN]' + '  -  ' + '[DIE] ' + fighterTwo.getUnitName());
-        } else {
-            System.debug(fighterTwo.getUnitName() + ' [DIE]' + '  -  ' + '[WIN] ' + fighterTwo.getUnitName());
+        if(fighterOne.getUnitHP() > fighterTwo.getUnitHP() && fighterOne.getUnitHP() > 0) {
+        	resultButtle = (fighterOne.getUnitName() + ' [WIN]' + '  -  ' + '[DIE] ' + fighterTwo.getUnitName());  
+        } else if (fighterTwo.getUnitHP() > fighterOne.getUnitHP() && fighterTwo.getUnitHP() > 0){
+        	resultButtle = (fighterTwo.getUnitName() + ' [DIE]' + '  -  ' + '[WIN] ' + fighterTwo.getUnitName());
         }
+        return resultButtle;
     }
     
     
