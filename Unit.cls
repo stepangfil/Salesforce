@@ -1,24 +1,24 @@
 /**
  * company: Provectus
  * course: Salesforce
- * Lecture #2
  * @author: Stepan Filyk
  * Date create: 11/06/2016
 **/
 
 public with sharing class Unit {
-	String unitName;
-	Integer unitHP;
-	Integer unitDamageMin;
-	Integer unitDamageMax;
+    public String unitName {get; set;}
+    public Integer unitHP {get; set;}
+    public Integer unitDamageMin {get; set;}
+    public Integer unitDamageMax {get; set;}
+    public Boolean lossState {get; set;}
     
-    
-    public Unit(String TheUnitName, Integer TheUnitHP, Integer TheUnitDamageMin, Integer TheUnitDamageMax) {
-        this.unitName = TheUnitName;
-        this.unitHP = TheUnitHP;
-        this.unitDamageMin = TheUnitDamageMin;
-        this.unitDamageMax = TheUnitDamageMax;
-	}
+    public Unit(String unitName, Integer unitHP, Integer unitDamageMin, Integer unitDamageMax) {
+        this.unitName = unitName;
+        this.unitHP = unitHP;
+        this.unitDamageMin = unitDamageMin;
+        this.unitDamageMax = unitDamageMax;
+        lossState = false;
+    }
     
     /**
     * Method implements the generation of random values level damage power
@@ -26,41 +26,44 @@ public with sharing class Unit {
     public Integer hitWithForce() {
         Integer damageMin = unitDamageMin;
         Integer damageMax = unitDamageMax;
-		
-        Integer damage = (Integer)(Math.floor(Math.random() * (damageMax - damageMin + 1) + damageMin));
-	return damage;	
-	}
-    
-    public void setUnitName(String unitName) {
-        this.unitName = unitName;
+	Integer damage = (Integer)(Math.floor(Math.random() * (damageMax - damageMin + 1) + damageMin));;
+        
+        return damage; 
     }
     
-    public String getUnitName() {
-        return unitName;
+    /**
+    *	Method implements randomly calculates target for hit
+    **/    
+    public String randomHit() {
+        String targetToHit;
+        Integer rundomTargetToHit = (Integer)Math.floor(Math.random() * 100);
+        
+        if(rundomTargetToHit < 30) {
+	    targetToHit = 'head';
+        } else if (rundomTargetToHit >= 30 && rundomTargetToHit < 70) {
+	    targetToHit = 'body';
+        } else if (rundomTargetToHit >= 70 && rundomTargetToHit < 100) {
+            targetToHit = 'legs';
+        }
+    	return targetToHit;
     }
     
-    public void setUnitHP(Integer unitHP) {
-        this.unitHP = unitHP;
-    }
-    
-    public Integer getUnitHP() {
-        return unitHP;
-    }
-    
-    public void setUnitDamageMin(Integer unitDamageMin) {
-        this.unitDamageMin = unitDamageMin;
-    }
-    
-    public Integer getUnitDamageMin() {
-        return unitDamageMin;
-    }
-    
-    public void setUnitDamageMax(Integer unitDamageMax) {
-        this.unitDamageMax = unitDamageMax;
-    }
-    
-    public Integer getUnitDamageMax() {
-        return unitDamageMax;
+    /**
+	* 	Method implements randomly calculates block from hit
+	**/
+    public String randomBlock() {
+        String blockFromHit;
+        
+        Integer randomBlockFromHit = (Integer)Math.floor(Math.random() * 100);
+        
+        if(randomBlockFromHit < 30) {
+            blockFromHit = 'head';
+        } else if (randomBlockFromHit >= 30 && randomBlockFromHit < 70) {
+            blockFromHit = 'body';
+        } else if (randomBlockFromHit >= 70 && randomBlockFromHit <= 100) {
+            blockFromHit = 'legs';
+        }
+        return blockFromHit;
     }
     
 }
